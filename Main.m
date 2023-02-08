@@ -25,17 +25,17 @@ tic;                                                                       % sta
 %% Input Information
 
 force = 4e2;                                                               % applied force in N
-T = 4;                                                                   % tutal duration of the analysis
+T = 4;                                                                     % tutal duration of the analysis
 rank_x = 30;                                                               % number of lattice in X-direction
 rank_y = 30;                                                               % number of lattice in Y-direction
-lngth_x = 1;                                                                 % the length of the side of the lattice
-lngth_y = 1;                                                                 % the length of the side of the lattice
+lngth_x = 1;                                                               % the length of the side of the lattice
+lngth_y = 1;                                                               % the length of the side of the lattice
 E = 2e11;                                                                  % Elasticity module in N/m^2 or Pa
 Rho = 7850;                                                                % density
-M = 10;                                                                   % mass of the nodes in Kg
+M = 10;                                                                    % mass of the nodes in Kg
 C = 0;                                                                     % damping coefficient in N*s/m
-sigmaY_t = 9e9;                                                           % yield stress in tension
-sigmaY_c = -9e9;                                                          % yield stress in compression
+sigmaY_t = 9e9;                                                            % yield stress in tension
+sigmaY_c = -9e9;                                                           % yield stress in compression
 nodof = 2;                                                                 % number of degree of freedom for each node (number of dimension)
 alpha = 50;                                                                % a coefficient in the stiffness formulation (5000*u + alpha*u^3). A positive alpha results in Hardening spring and a negative alpha results in Softening spring
 noframes = 200;                                                            % the number of video frames of structural deformation and stress contour
@@ -44,9 +44,9 @@ NewMatProp = 'yes';                                                        % if 
 DeformVideo = 'yes';                                                       % produces an animation of the structure deformation during the simulation
 StressVideo = 'yes';                                                       % produces an animation of the structure deformation along with the stress contour of the elements during the simulation
 Display = 'yes';                                                           % if this option is equal to "yes", a report of the analysis process will be displayed in the Command Windows throughout the run.
-Defect = 'no';                                                            % if this option is equal to "yes", then the defect will be created in the structure.
-    Center = [15, 15];                                                      % The defect will be created in such a way that all the nodes inside the area to the center "Center"
-    Radius = 2;                                                          % and to the radius "Radius" along with all the elements connected to them will be deleted.
+Defect = 'no';                                                             % if this option is equal to "yes", then the defect will be created in the structure.
+    Center = [15, 15];                                                     % The defect will be created in such a way that all the nodes inside the area to the center "Center"
+    Radius = 2;                                                            % and to the radius "Radius" along with all the elements connected to them will be deleted.
 
 
 %% Preprocessing
@@ -126,8 +126,7 @@ a = m/(dt^2) - c/(2*dt);
 b = -2*m / (dt^2);
 
 p = zeros(notstep+1, nodof_t);
-p(:, 2*(rank_y+1)-1) = force;                                              % excitation force
-% p(:, 2*(rank_y+1)) = -force;                                              % excitation force
+p(:, 2*(rank_y+1)-1) = force;                                               % excitation force
 
 % Calculations for the first time step, i = 0
 pcirc = p0 - a*u_1 - b*u0 - fs0;
