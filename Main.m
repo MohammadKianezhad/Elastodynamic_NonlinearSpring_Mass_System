@@ -248,8 +248,6 @@ end
 
 %% Postprocessing
 
-Drawdef2(coords, conecs, reshape(u(istep, :), 2, '')', failStat(istep, :), A_t);
-
 notstep = istep+1;
 if noframes > notstep
     frameID = 1:notstep;
