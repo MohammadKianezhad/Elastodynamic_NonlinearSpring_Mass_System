@@ -1,5 +1,5 @@
 # Elastodynamic_NonlinearSpring_Mass_System
-# Elasto-Dynamic Simulation of Nonlinear Spring-Mass System with Explicit Time Integration
+# Elasto-dynamic Simulation of Nonlinear Spring-Mass System with Explicit Time Integration
 
 This code has been developed for a second-round interview of a PhD position at ETH Zurich.
 
