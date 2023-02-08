@@ -247,7 +247,7 @@ end
 
 %% Postprocessing
 
-notstep = istep+1;
+notstep = istep;
 if noframes > notstep
     frameID = 1:notstep;
 else
