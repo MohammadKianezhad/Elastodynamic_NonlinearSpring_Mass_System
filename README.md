@@ -13,7 +13,7 @@ Notes:
    - in this program "dof" stands for "degree of freedom".
    - in this program "u" stands for "displacement".
    - in this program "ud" stands for "velocity" as the first derivative of "u".
-   - in this program "udd" stands for "accelaration" as the Second derivative of "u".
+   - in this program "udd" stands for "accelaration" as the second derivative of "u".
 
 This program consists of various functions, which are briefly introduced below:
    - Main: the main body of the program
