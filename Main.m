@@ -62,6 +62,22 @@ fprintf(fid_log, '\n%s\n\n\n', datetime(now,'ConvertFrom','datenum'));
 % [coords, conecs, nonod_t, noelmn_t] = Mesh_Triangle(rank_x, lngth);
 [coords, conecs, nonod_t, noelmn_t] = Mesh_Square(rank_x, rank_y, lngth_x, lngth_y, '2Diag');  % mesh production
 
+if strcmpi(NewMatProp, 'yes')
+    Arand = randi([-400 400], noelmn_t, 1) / 1e5;
+    fid = fopen('Outputs\\RandomnessOfArea.txt', 'w');
+    fprintf(fid, '%f\n', Arand);
+    fclose(fid);
+else
+    if ~isfile('Outputs\\RandomnessOfArea.txt')
+        error(['There is no file related to the random numbers of cross-sectional ',...
+            'area in the "Outputs" folder. Please change the option for NewMatProp to "Yes".'])
+    end
+end
+fid2 = fopen('Outputs\\RandomnessOfArea.txt', 'r');
+Arand = fscanf(fid2, '%f\n', [1 inf]);
+fclose(fid2);
+A_t = A + Arand';
+
 defectElmnIDs = [];
 if strcmpi(Defect, 'yes')
     defectNodeIDs = find(((coords(:, 1)-Center(1)).^2 + (coords(:, 2)-Center(2)).^2) < Radius^2);
@@ -72,6 +88,7 @@ if strcmpi(Defect, 'yes')
     conecs(defectElmnIDs, :) = [];
     nonod_t = size(coords, 1);
     noelmn_t = size(conecs, 1);
+    A_t(defectElmnIDs) = [];
 end
 
 nodof_t = nodof * nonod_t;                                                 % number of total degrees of freedom
@@ -90,22 +107,6 @@ stress = zeros(notstep+1, noelmn_t);
 Pn = zeros(notstep+1, noelmn_t);
 failStat = zeros(notstep, noelmn_t);                                        % it works as a flag for broken elements. The index of failed elements would be equal to 1.
 Tsteps = zeros(notstep, 1);
-
-if strcmpi(NewMatProp, 'yes')
-    Arand = randi([-400 400], noelmn_t, 1) / 1e5;
-    fid = fopen('Outputs\\RandomnessOfArea.txt', 'w');
-    fprintf(fid, '%f\n', Arand);
-    fclose(fid);
-else
-    if ~isfile('Outputs\\RandomnessOfArea.txt')
-        error(['There is no file related to the random numbers of cross-sectional ',...
-            'area in the "Outputs" folder. Please change the option for NewMatProp to "Yes".'])
-    end
-end
-fid2 = fopen('Outputs\\RandomnessOfArea.txt', 'r');
-Arand = fscanf(fid2, '%f\n', [1 inf]);
-fclose(fid2);
-A_t = A + Arand';
 
 impdof = [1 2 2*(rank_x*(rank_y+1)+1)];
 
