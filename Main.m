@@ -238,9 +238,6 @@ while true
     if Tsteps(istep+1) >= T                                                % it checks that the simulation ends when the analysis time reaches the desired time (T)
         break
     end
-    if Tsteps(istep+1) >= 1
-        aaaa = 1;
-    end
     istep = istep + 1;
 end
 
@@ -289,7 +286,7 @@ end
 
 
 fileNameForSave = sprintf("Outputs\\Results_ExplicitDynamicsAnalysis.mat");
-save (fileNameForSave)
+save (fileNameForSave, '-v7.3')
 
 runtime = toc;                                                             % end of run time calculation
 fprintf(fid_log, '\n    Run Time => %2d:%2d\n    END\n',[floor(runtime/60),round(mod(runtime,60))]);               % run-time report
