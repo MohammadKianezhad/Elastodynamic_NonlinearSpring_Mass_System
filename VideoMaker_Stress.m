@@ -16,14 +16,14 @@ elmlngth = sqrt(lngth_x^2 + lngth_y^2);
 edge = 0.5 * elmlngth;
 
 figure
-axis([min(min(coords_ult(1:2:end)))-edge max(max(coords_ult(1:2:end)))+edge...
-    min(min(coords_ult(2:2:end)))-edge max(max(coords_ult(2:2:end)))+edge])
 set(gcf, 'units', 'points', 'position', [500, 150, 600, 600])
 v = VideoWriter(['Outputs\\', OutputsName,'.avi']);
 v.FrameRate = FrameRate;
 open(v)
 for i=1:nframes
     clf
+    axis([min(min(coords_ult(1:2:end)))-edge max(max(coords_ult(1:2:end)))+edge...
+        min(min(coords_ult(2:2:end)))-edge max(max(coords_ult(2:2:end)))+edge])
 %     coords_istep = reshape(coords_ult(i, :), 2, '')';
 %     axis([min(coords_istep(:, 1))-edge max(coords_istep(:, 1))+edge...
 %         min(coords_istep(:, 2))-edge max(coords_istep(:, 2))+edge])
